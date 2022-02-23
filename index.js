@@ -27,8 +27,8 @@ canvas.on("mouse:wheel", function (img) {
   let delta = img.e.deltaY;
   let zoom = canvas.getZoom();
   zoom *= 0.999 ** delta;
-  if (zoom > 20) zoom = 20;
-  if (zoom < 0.01) zoom = 0.01;
+  if (zoom > 2) zoom = 2;
+  if (zoom < 1) zoom = 1;
   canvas.zoomToPoint({ x: img.e.offsetX, y: img.e.offsetY }, zoom);
   img.e.preventDefault();
   img.e.stopPropagation();
