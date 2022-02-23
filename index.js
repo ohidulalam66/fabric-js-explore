@@ -1,6 +1,6 @@
 const canvas = new fabric.Canvas("canvas", {
-  width: 500,
-  height: 500,
+  width: 550,
+  height: 550,
   backgroundColor: "#8585853f",
 });
 
@@ -27,7 +27,7 @@ canvas.on("mouse:wheel", function (img) {
   let delta = img.e.deltaY;
   let zoom = canvas.getZoom();
   zoom *= 0.999 ** delta;
-  if (zoom > 2) zoom = 2;
+  if (zoom > 20) zoom = 20;
   if (zoom < 1) zoom = 1;
   canvas.zoomToPoint({ x: img.e.offsetX, y: img.e.offsetY }, zoom);
   img.e.preventDefault();
