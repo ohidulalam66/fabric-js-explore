@@ -30,7 +30,6 @@ canvas.on("mouse:wheel", function (imgFile) {
   if (zoom > 20) zoom = 20;
   if (zoom < 1) zoom = 1;
   canvas.zoomToPoint({ x: imgFile.e.offsetX, y: imgFile.e.offsetY }, zoom);
-  // imgFile.style.transform = `translate(${x}, ${y}) scale(${canvas})`;
   imgFile.e.preventDefault();
   imgFile.e.stopPropagation();
   const vpt = this.viewportTransform;
@@ -52,7 +51,6 @@ canvas.on("mouse:wheel", function (imgFile) {
 });
 
 // Clear button
-
 const clearCanvas = (canvas) => {
   canvas.getObjects().forEach((clear) => {
     if (clear !== canvas.backgroundColor) {
