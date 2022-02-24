@@ -23,35 +23,32 @@ render.addEventListener("load", () => {
   });
 });
 
-canvas.on("mouse:wheel", function (img) {
-  let delta = img.e.deltaY;
+canvas.on("mouse:wheel", function (imgFile) {
+  let delta = imgFile.e.deltaY;
   let zoom = canvas.getZoom();
   zoom *= 0.999 ** delta;
   if (zoom > 20) zoom = 20;
   if (zoom < 1) zoom = 1;
-  canvas.zoomToPoint({ x: img.e.offsetX, y: img.e.offsetY }, zoom);
-  img.e.preventDefault();
-  img.e.stopPropagation();
+  canvas.zoomToPoint({ x: imgFile.e.offsetX, y: imgFile.e.offsetY }, zoom);
+  // imgFile.style.transform = `translate(${x}, ${y}) scale(${canvas})`;
+  imgFile.e.preventDefault();
+  imgFile.e.stopPropagation();
   const vpt = this.viewportTransform;
-  if (zoom < 400 / 1000) {
-    vpt[4] = 200 - (1000 * zoom) / 2;
-    vpt[5] = 200 - (1000 * zoom) / 2;
+  if (zoom < 400 / 550) {
+    vpt[4] = 200 - (550 * zoom) / 2;
+    vpt[5] = 200 - (550 * zoom) / 2;
   } else {
     if (vpt[4] >= 0) {
       vpt[4] = 0;
-    } else if (vpt[4] < canvas.getWidth() - 1000 * zoom) {
-      vpt[4] = canvas.getWidth() - 1000 * zoom;
+    } else if (vpt[4] < canvas.getWidth() - 550 * zoom) {
+      vpt[4] = canvas.getWidth() - 550 * zoom;
     }
     if (vpt[5] >= 0) {
       vpt[5] = 0;
-    } else if (vpt[5] < canvas.getHeight() - 1000 * zoom) {
-      vpt[5] = canvas.getHeight() - 1000 * zoom;
+    } else if (vpt[5] < canvas.getHeight() - 550 * zoom) {
+      vpt[5] = canvas.getHeight() - 550 * zoom;
     }
   }
-});
-
-canvas.on("mouse:out", function () {
-  canvas.style.transform = "translate(-50%, -50%) scale(1)";
 });
 
 // Clear button
